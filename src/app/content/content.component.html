@@ -4,4 +4,22 @@
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
   crossorigin="anonymous"
 />
-<img class="img-thumbnail" [src]="Image1" *ngIf="Image1" />
+<div class="container mt-5 p-4 col-md-6 shadow rounded-3">
+  <h4 style="text-align: center">{{ Title }}</h4>
+  <div style="display: flex; justify-content: center">
+    <img
+      style="width: 350px"
+      alt="Image-1"
+      class="img-thumbnail"
+      [src]="Image1"
+      *ngIf="Image1"
+    />
+    <img
+      style="width: 350px"
+      alt="Image-2"
+      class="img-thumbnail"
+      [src]="Image2"
+      *ngIf="Image2"
+    />
+  </div>
+</div>

@@ -5,6 +5,7 @@
   crossorigin="anonymous"
 />
 <div class="container col-md-10 shadow rounded-3 mt-5 p-3 text-center">
+  <button (click)="move()" class="btn btn-success" type="button">Page-3</button>
   <ng-container *ngFor="let content of apiContent; let i = index">
     <p class="mt-4">Title {{ i + 1 }}: {{ content.title }}</p>
     <div style="display: flex; align-items: center; justify-content: center">
@@ -18,5 +19,4 @@
       </h6>
     </div> </ng-container
   ><br />
-  <button (click)="move()" class="btn btn-success" type="button">Page-3</button>
 </div>

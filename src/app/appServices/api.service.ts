@@ -6,10 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  Image1Url = '';
+  Title = '';
+  Image1Url = "null";
+  Image2Url = "null";
   constructor(private _http: HttpClient) {}
 
-  getPhotos(){
+  getPhotos() {
     return this._http.get('https://jsonplaceholder.typicode.com/photos');
   }
 
@@ -17,11 +19,23 @@ export class ApiService {
     return this._http.post('https://jsonplaceholder.typicode.com/photos', data);
   }
 
+  getTitle(){
+    return this.Title;
+  }
+  setTitle(title: string) {
+    this.Title = title;
+  }
   getImage1Url() {
     return this.Image1Url;
   }
   setImage1Url(url: string) {
     this.Image1Url = url;
+  }
+  getImage2Url() {
+    return this.Image2Url;
+  }
+  setImage2Url(url: string) {
+    this.Image2Url = url;
   }
 
   // BUCKET = 'http://localhost:4200';

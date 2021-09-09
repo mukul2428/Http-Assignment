@@ -10,19 +10,19 @@ import { ApiService } from '../appServices/api.service';
 })
 export class HttpComponent implements OnInit {
   myFormData!: FormGroup;
-  File!:any;
+  File!: any;
   url: any;
-  dataToSendApi =
-  {
-    "title": '',
-    "image1": '',
-    "image2": '',
-  }
-  
+  dataToSendApi = {
+    title: '',
+    image1: '',
+    image2: '',
+  };
+
   constructor(
-    private _api: ApiService, 
+    private _api: ApiService,
     private fb: FormBuilder,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.myFormData = this.fb.group({
@@ -32,15 +32,17 @@ export class HttpComponent implements OnInit {
 
   onSubmit() {
     this.dataToSendApi.title = this.myFormData.value?.title;
+    this._api.setTitle(this.myFormData.value?.title);
     this.dataToSendApi.image1 = this.url;
     this.dataToSendApi.image2 = this.url;
+
     this.router.navigate(['api-content']);
+
     this._api.saveData(this.dataToSendApi).subscribe((res) => {
       console.log(res);
     });
     // this._api.uploadToAssets(this.File);
   }
-  
 
   //upload files
   selectFile(event: any) {
@@ -57,8 +59,14 @@ export class HttpComponent implements OnInit {
     reader.onload = (_event) => {
       this.url = reader.result;
       // console.log(this.url);
-      this._api.setImage1Url(this.url);
+
+      if (this._api.getImage1Url() == 'null') {
+        this._api.setImage1Url(this.url); //sending images to service
+        console.log('Img1');
+      } else {
+        this._api.setImage2Url(this.url);
+        console.log('Img2');
+      }
     };
-    
   }
 }
